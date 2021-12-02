@@ -33,17 +33,17 @@ During the implementation of the [PR](https://github.com/paritytech/ink/pull/101
 we found out that sub-contracts from the `delegator` example take a lot of space 
 in comparison to other simple contracts. We investigated that point and found  out 
 the reason in `workspace`. We created [that report](https://github.com/paritytech/ink/pull/1054) 
-and later created a fixed one in [`cargo-contract`](https://github.com/paritytech/cargo-contract/pull/378).
+and later created the fix in [`cargo-contract`](https://github.com/paritytech/cargo-contract/pull/378).
 
 During debugging of `#[inline]` methods we figured out that applying of `-Clinker-plugin-lto` 
 flag during compilation reduces the size of the contract. For small contracts, 
-it is ~200 bytes, for big one ~900 bytes. We heve done [PR](https://github.com/paritytech/cargo-contract/pull/358) 
+it is ~200 bytes, for big ~900 bytes. We heve done [PR](https://github.com/paritytech/cargo-contract/pull/358) 
 in the `cargo-contract` repository with that fix.
 
 During analyzing of the dispatching WASM blob, we explored that `scale:::Decode` 
 is not optimally implemented for `AccountId`(and for all arrays like `[u8; N]` structures). 
 We heve done a [change](https://github.com/paritytech/ink/pull/1016) in ink! repository([report](https://github.com/paritytech/ink/pull/1016#issuecomment-970425793)). 
-But later we implemented some changes in [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec/pull/299). 
+But later we implemented that change in [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec/pull/299). 
 It also [improved the performance](https://github.com/paritytech/parity-scale-codec/pull/299#issuecomment-974819024) 
 during runtime for all WASM-based code(so it also improved some stuff in `substrate`).
 

@@ -56,4 +56,11 @@ during runtime for all WASM-based code(so it also improved some stuff in `substr
 
 **Additional Information**
 
-We generated more full changes than planned and it took on one week more. Is it possible to increase payment for that milestone from 9,000 USD to 12,000?
+We generated more full changes than planned and it took on one week more.
+
+From of our Grant:
+> We want to briefly(not full change, only minimal changes to reduce the size) implement them and provide a report(re-working data structure, reducing monomorphization, using dynamic dispatch in some cases).
+
+In the description of the milestone, we mentioned that we're going to do "not full change, 
+only minimal changes to reduce the size", but we implemented them fully and it took more time.
+Is it possible to increase payment for that milestone from 9,000 USD to 12,000?

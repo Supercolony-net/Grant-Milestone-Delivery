@@ -11,8 +11,8 @@ In the scope of that milestone, we investigated what takes most of the code and 
 
 A lot of space was taken by the blob from `ink_storage::collections::StorageHashMap`. 
 So we implemented a lightweight version without caching of elements(`SimpleHashMap`) 
-and provided a report in [the issue](https://github.com/paritytech/ink/issues/945#issuecomment-930427082).
-Later it was an example during the implementation of `Mapping` by the ink! team.
+and provided a report in [the issue](https://github.com/paritytech/ink/issues/945#issuecomment-930427082) to ink!.
+Later the ink! team created an example by using our implementation of `Mapping`.
 
 The dispatching logic of messages and constructors in the ink! generates a lot of code. We found several moments that can be optimized:
 
@@ -30,20 +30,20 @@ The dispatching logic of messages and constructors in the ink! generates a lot o
   Description of the PR contains a report about the size and [this comment](https://github.com/paritytech/ink/pull/1017#issuecomment-970575796).
 
 During the implementation of the [PR](https://github.com/paritytech/ink/pull/1017) 
-we found that sub-contracts from the `delegator` example take a lot of space 
-in comparison to other simple contracts. We investigated that question and found 
-that the reason in `workspace`. We created [that report](https://github.com/paritytech/ink/pull/1054) 
-and later created a fix in [`cargo-contract`](https://github.com/paritytech/cargo-contract/pull/378).
+we found out that sub-contracts from the `delegator` example take a lot of space 
+in comparison to other simple contracts. We investigated that point and found  out 
+the reason in `workspace`. We created [that report](https://github.com/paritytech/ink/pull/1054) 
+and later created a fixed one in [`cargo-contract`](https://github.com/paritytech/cargo-contract/pull/378).
 
-During debugging of `#[inline]` methods we found that applying of `-Clinker-plugin-lto` 
+During debugging of `#[inline]` methods we figured out that applying of `-Clinker-plugin-lto` 
 flag during compilation reduces the size of the contract. For small contracts, 
-it is ~200 bytes, for big contracts ~900 bytes. We did [PR](https://github.com/paritytech/cargo-contract/pull/358) 
+it is ~200 bytes, for big one ~900 bytes. We heve done [PR](https://github.com/paritytech/cargo-contract/pull/358) 
 in the `cargo-contract` repository with that fix.
 
-During analyzing of the dispatching WASM blob, we found that `scale:::Decode` 
+During analyzing of the dispatching WASM blob, we explored that `scale:::Decode` 
 is not optimally implemented for `AccountId`(and for all arrays like `[u8; N]` structures). 
-We did a [change](https://github.com/paritytech/ink/pull/1016) in ink! repository([report](https://github.com/paritytech/ink/pull/1016#issuecomment-970425793)). 
-But later we implemented that change in [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec/pull/299). 
+We heve done a [change](https://github.com/paritytech/ink/pull/1016) in ink! repository([report](https://github.com/paritytech/ink/pull/1016#issuecomment-970425793)). 
+But later we implemented some changes in [`parity-scale-codec`](https://github.com/paritytech/parity-scale-codec/pull/299). 
 It also [improved the performance](https://github.com/paritytech/parity-scale-codec/pull/299#issuecomment-974819024) 
 during runtime for all WASM-based code(so it also improved some stuff in `substrate`).
 

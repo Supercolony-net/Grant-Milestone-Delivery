@@ -12,7 +12,7 @@ In the scope of that milestone, we investigated what takes most of the code and 
 A lot of space was taken by the blob from `ink_storage::collections::StorageHashMap`. 
 So we implemented a lightweight version without caching of elements(`SimpleHashMap`) 
 and provided a report in [the issue](https://github.com/paritytech/ink/issues/945#issuecomment-930427082) to ink!.
-Later the ink! team created an example by using our implementation of `Mapping`.
+Later the ink! team created their own implementation of `Mapping` by using our example of it.
 
 The dispatching logic of messages and constructors in the ink! generates a lot of code. We found several moments that can be optimized:
 

@@ -7,9 +7,7 @@
 
 **Context**
 
-In the scope of that milestone, we investigated what takes most part of the 
-size of the code and tried to reduce it or provide a report about potential 
-optimizations.
+In the scope of that milestone, we investigated what takes most of the code and tried to reduce it or provide a report about potential optimization processes.
 
 A lot of space was taken by the blob from `ink_storage::collections::StorageHashMap`. 
 So we implemented a lightweight version without caching of elements(`SimpleHashMap`) 
